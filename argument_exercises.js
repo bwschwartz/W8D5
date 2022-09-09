@@ -91,11 +91,44 @@ function curriedSum(numArgs) {
       const total = numbers.reduce((acc, ele) => acc + ele);
       return total;
     } else {
-      return _curriedSum
+      return _curriedSum;
     }
   }
-  return _curriedSum
+  return _curriedSum;
 }
 
 const total = curriedSum(4);
 console.log(total(5)(30)(20)(1)); // => 56
+
+// Function.prototype.curry = function(numArgs) {
+//   let argumentz = [];
+//   let that = this;
+//   function _curriedFunc(arg) {
+//     argumentz.push(arg)
+//     if (argumentz.length === numArgs) {
+//       return that.apply(this, argumentz);
+//     } else {
+//       return _curriedFunc;
+//     }
+//   }
+//   return _curriedFunc;
+// }
+
+
+
+Function.prototype.curry = function(numArgs) {
+  let argumentz = [];
+  let that = this;
+  function _curriedFunc(...args) {
+    argumentz = argumentz.concat(args)
+    if (argumentz.length === numArgs) {
+      return that.apply(this, argumentz);
+    } else {
+      return _curriedFunc;
+    }
+  }
+  return _curriedFunc;
+}
+
+const curry = console.log.curry(4);
+console.log(curry);
