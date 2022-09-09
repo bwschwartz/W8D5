@@ -16,6 +16,7 @@ Function.prototype.inherits = function(parentClass) {
 
 function MovingObject(name) {
   this.name = name;
+  this.test = "beep boop";
 }
 
 MovingObject.prototype.sound = "hi";
@@ -25,8 +26,12 @@ MovingObject.prototype.print = function () {
 
 function Ship(name, sound) {
   this.name = name;
-  this.sound = sound;
+  if (sound){
+    this.sound = sound;
+  }
+  MovingObject.call(this, test)
 }
+
 Ship.inherits(MovingObject);
 
 const myMovingObject = new MovingObject("Kat")
@@ -38,4 +43,6 @@ const myShip = new Ship("Ben", "bye")
 
 console.log(myShip.print())
 console.log(myShip.sound)
+console.log(myShip.sound)
+
 
