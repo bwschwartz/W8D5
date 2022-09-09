@@ -18,19 +18,24 @@ function MovingObject(name) {
   this.name = name;
 }
 
-MovingObject.prototype.testAttr = "hi";
+MovingObject.prototype.sound = "hi";
 MovingObject.prototype.print = function () {
   console.log(`hi from ${this.name}`);
 }
 
-function Ship(name) {
+function Ship(name, sound) {
   this.name = name;
-  // this.testAttr = "bye";
+  this.sound = sound;
 }
 Ship.inherits(MovingObject);
 
-const myShip = new Ship("Ben")
+const myMovingObject = new MovingObject("Kat")
+
+console.log(myMovingObject.print())
+console.log(myMovingObject.sound)
+
+const myShip = new Ship("Ben", "bye")
 
 console.log(myShip.print())
-console.log(myShip.testAttr)
+console.log(myShip.sound)
 
